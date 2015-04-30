@@ -12,20 +12,21 @@ D = D - m*ones(1,n);
 C = ourCov(D);              %covariance: C(1,2) = C(2,1) {if d=2}
 
 %compute eigenvalue
-[EVec, EVal] = eig(C);      %l1: EVal(1,1) / l2: EVal(2,2)
+[EVec, tmp] = eig(C);
+EVal = eig(C);
 
-EVec
-EVal
+%sort eigen-values and -vectors descendendig according to eigen-value
+[EVal, ind] = sort(EVal,'descend');
+for i=1 : size(EVal,1)
+   EVec(:,i) = EVec(ind(:,1),i); 
+end
+
+%plot2DPCA(D, m, D, EVec, EVal, 1, 1)
 
 %TODO?
 
-
-landmarks = D(:);
-
-% TODO
-
-
-
+%???
+%landmarks = D(:);
 
 end
 
