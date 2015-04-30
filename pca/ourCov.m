@@ -12,13 +12,9 @@ function [C] = ourCov(D)
 %   xc = bsxfun(@minus,x,sum(x,1)/m);
 %   xy = (xc' * xc) / (m-1);
 
-tic;
-
 [d, n] = size(D);
 
 Dc = D - mean(D,2) * ones(1,n);
 C = (1/(n-1)) * (Dc * Dc');
-
-toc
 
 end
