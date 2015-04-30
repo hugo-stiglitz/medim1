@@ -16,7 +16,7 @@ tic;
 
 [d, n] = size(D);
 
-Dc = D - mean(D,d) * ones(1,n);
+Dc = D - mean(D,2) * ones(1,n);
 C = (1/(n-1)) * (Dc * Dc');
 
 toc
