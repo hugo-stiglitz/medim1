@@ -15,15 +15,11 @@ C = ourCov(D0);              %covariance: C(1,2) = C(2,1) {if d=2}
 [EVec, tmp] = eig(C);
 EVal = eig(C);
 
-EVec
-
 %sort eigen-values and -vectors descendendig according to eigen-value
 [EVal, ind] = sort(EVal,'descend');
 for i=1 : size(EVal,1)
    EVecSort(:,i) = EVec(:,ind(i)); 
 end
-
-EVecSort
 
 end
 
