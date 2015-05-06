@@ -1,4 +1,4 @@
-function [ EVal, EVec, m ] = pca( D )
+function [ EVal, EVecSort, m ] = pca( D )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -15,11 +15,15 @@ C = ourCov(D0);              %covariance: C(1,2) = C(2,1) {if d=2}
 [EVec, tmp] = eig(C);
 EVal = eig(C);
 
+EVec
+
 %sort eigen-values and -vectors descendendig according to eigen-value
 [EVal, ind] = sort(EVal,'descend');
 for i=1 : size(EVal,1)
-   EVec(:,i) = EVec(ind(:,1),i); 
+   EVecSort(:,i) = EVec(:,ind(i)); 
 end
+
+EVecSort
 
 end
 
