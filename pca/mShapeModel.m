@@ -13,21 +13,28 @@ EVectors = [];
 EValues = [];
 Means = [];
 
-nShapes = 1;
+meanShape = mean(aligned,3);
+
+plotShape(aligned, meanShape)
+
+%nShapes = 1;
 for i = 1:nShapes
     D = aligned(:,:,i);
-    n = size(D, 1)
+    n = size(D, 1);
     D = D';
-    [EVal, EVec, m] = pca(D);
+    [EVal, EVec, mPca] = pca(D);
+    m = meanShape';
     
     plot2DPCA(D', m, D', EVec', EVal, 1, 1);
     
     EVectors(:,:,i) = EVec;
     EValues(:,:,i) = EVal;
-    Means(:,i) = m;
+    %Means(:,i) = m;
     
-    b = EVec(:,1)' * (D - m * ones(1,n));
+    b = EVec(:,1)' * (D - m); % * ones(1,n));
     
     x = generateShape(EVec, b, m);
-    %plotShape(x);
+    hold off;
+    plotShape(x, meanShape, D');
+    %plot2DPCA(D', mPca, x, EVec, EVal, 1, 1);
 end
