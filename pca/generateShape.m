@@ -4,10 +4,11 @@ function [ shapes ] = generateShape( EVectors, b, Mean )
 
 [nVectors] = size(EVectors, 2);
 n = size(b,2);
+%nVectors = 1;
 for i = 1:nVectors
     E = EVectors(:,i);
     
-    shapes(:,:,i) = (E*b + Mean*ones(1,n))';
+    shapes(:,:,i) = (E*b + Mean)';
 end
 
 end
