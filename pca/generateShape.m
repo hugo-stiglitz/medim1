@@ -1,14 +1,7 @@
-function [ shapes ] = generateShape( EVectors, b, Mean )
+function [ shape ] = generateShape( EVectors, b, Mean )
 %GENERATESHAPE Summary of this function goes here
 %   Detailed explanation goes here
 
-[nVectors] = size(EVectors, 2);
-n = size(b,2);
-%nVectors = 1;
-for i = 1:nVectors
-    E = EVectors(:,i);
-    
-    shapes(:,:,i) = (E*b + Mean)';
-end
+shape = EVectors' * b + Mean;
 
 end

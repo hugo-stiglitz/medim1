@@ -9,32 +9,50 @@ load('shapes.mat');
 
 [nPoints nDimensions nShapes] = size(aligned);
 
-EVectors = [];
-EValues = [];
-Means = [];
-
 meanShape = mean(aligned,3);
 
-plotShape(aligned, meanShape)
-
-%nShapes = 1;
 for i = 1:nShapes
-    D = aligned(:,:,i);
-    n = size(D, 1);
-    D = D';
-    [EVal, EVec, mPca] = pca(D);
-    m = meanShape';
+    tmp = aligned(:,:,i);
+    D(:,i) = tmp(:);
+end
+
+[EVal, EVec, m] = pca(D);
+
+nEigenvalues = size(EVal,1);
+%%
+for i = -3 : 3
+    b = zeros(nEigenvalues, 1);
+    b(1) = i * sqrt(EVal(1));
+    s(:,:,i+4) = generateShape(EVec(:,1), b, meanShape);
+end
+
+plotShape(s, meanShape);
+%%
+sumVariance = sum(EVal);
+
+v = EVal ./ sumVariance
+b=randn(1,nEigenvalues)'.*v;
+s = generateShape(EVec(:,1), b, meanShape);
+plotShape(s, meanShape);
+
+varianceSum = 0;
+lastVarianceSum = 0;
+for i = 1:nEigenvalues
     
-    plot2DPCA(D', m, D', EVec', EVal, 1, 1);
+    varianceSum = varianceSum + v(i);
     
-    EVectors(:,:,i) = EVec;
-    EValues(:,:,i) = EVal;
-    %Means(:,i) = m;
+    if (varianceSum >= 0.8 && lastVarianceSum < 0.8)
+        strcat('80% bei:', num2str(i))
+    end
+    if (varianceSum >= 0.9 && lastVarianceSum < 0.9)
+        strcat('90% bei:', num2str(i))
+    end
+    if (varianceSum >= 0.95 && lastVarianceSum < 0.95)
+        strcat('95% bei:', num2str(i))
+    end
+    if (varianceSum >= 1 && lastVarianceSum < 1)
+        strcat('100% bei:', num2str(i))
+    end
+    lastVarianceSum = varianceSum;
     
-    b = EVec(:,1)' * (D - m); % * ones(1,n));
-    
-    x = generateShape(EVec, b, m);
-    hold off;
-    plotShape(x, meanShape, D');
-    %plot2DPCA(D', mPca, x, EVec, EVal, 1, 1);
 end

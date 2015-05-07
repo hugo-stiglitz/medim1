@@ -6,6 +6,8 @@ function [ output_args ] = plotShape( shapes, meanShape, original )
 
 % Plot all shapes
 
+figure;
+
 for i = 1:nShapes
     p = plot(shapes(:,1,i), shapes(:,2,i));
     p.Color = 'blue';
