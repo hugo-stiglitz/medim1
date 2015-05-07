@@ -13,7 +13,5 @@ for i=1:dataCount(3)
     D = data(:,:,i);
     [EVal, EVec, m] = pca(D);
     % * data D must be transposed for plot
-    % * eigenvectors EVec must be transposed for plot (plot2DPCA needs
-    %eigenvectors in colums)
     plot2DPCA(D', m, D', EVec, EVal, 1, 1);
 end
