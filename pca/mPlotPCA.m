@@ -15,5 +15,5 @@ for i=1:dataCount(3)
     % * data D must be transposed for plot
     % * eigenvectors EVec must be transposed for plot (plot2DPCA needs
     %eigenvectors in colums)
-    plot2DPCA(D', m, D', EVec', EVal, 1, 1);
+    plot2DPCA(D', m, D', EVec, EVal, 1, 1);
 end
