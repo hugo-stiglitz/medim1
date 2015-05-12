@@ -1,7 +1,10 @@
-function [ shape ] = generateShape( EVectors, b, Mean )
-%GENERATESHAPE Summary of this function goes here
-%   Detailed explanation goes here
+function [ shape ] = generateShape( EVector, b, Mean )
+%GENERATESHAPE Generates a shape out of a Eigenvector, a Parametervector b,
+%and a MeanShape
+%   EVector: Eigenvector
+%   b: Parametervector
+%   Mesn: Meanshape
 
-shape = EVectors' * b + Mean;
+shape = EVector' * b + Mean;
 
 end

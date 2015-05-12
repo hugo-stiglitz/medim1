@@ -1,11 +1,11 @@
-function [ output_args ] = plotShape( shapes, meanShape, original )
-%PLOTSHAPE Summary of this function goes here
-%   Detailed explanation goes here
+function [ output_args ] = plotShape( shapes, meanShape )
+%PLOTSHAPE Plots one or more shapes in a figure
+%   shapes: Vector containing the shapes.
+%   meanShape: The mean shape. Will be plotted in red.
 
 [nPoints nDimensions nShapes] = size(shapes);
 
-% Plot all shapes
-
+% Plot all shapes in blue
 figure;
 
 for i = 1:nShapes
@@ -14,20 +14,11 @@ for i = 1:nShapes
     hold on;
 end
 
-
-% Calculate mean shape
-
-%meanShape = mean(shapes,3)
+% Plot meanShape in red
 p = plot(meanShape(:,1),meanShape(:,2));
 p.Color = 'red';
 p.LineWidth = 2;
 
-if (nargin > 2)
-    p = plot(original(:,1),original(:,2));
-    p.Color = 'green';
-    %p.LineWidth = 3;
-end
-% axis equal;
 hold off;
 
 end
