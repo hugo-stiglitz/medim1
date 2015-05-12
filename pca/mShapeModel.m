@@ -1,11 +1,6 @@
-%
-% Aufgabe 5
-%
-
-% clean up
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load('shapes.mat');
 
@@ -45,6 +40,7 @@ for i = -3 : 3
 end
 
 plotShape(s, meanShape);
+title('shape model - standard deviations');
 
 %%
 % Aufgabe 5c
@@ -63,7 +59,7 @@ s = [];
 b = zeros(nEigenvalues, 1);
 
 figure;
-title('5c');
+title('shape model - 80% / 90% / 95% / 100% variance');
 
     p.Color = 'blue';
     hold on;

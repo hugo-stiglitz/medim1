@@ -1,6 +1,6 @@
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load('daten.mat')
 data(:,:,1) = data1;
