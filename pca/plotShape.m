@@ -20,14 +20,14 @@ end
 %meanShape = mean(shapes,3)
 p = plot(meanShape(:,1),meanShape(:,2));
 p.Color = 'red';
-p.LineWidth = 3;
+p.LineWidth = 2;
 
 if (nargin > 2)
     p = plot(original(:,1),original(:,2));
     p.Color = 'green';
     %p.LineWidth = 3;
 end
-
+% axis equal;
 hold off;
 
 end
