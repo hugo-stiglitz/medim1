@@ -1,6 +1,6 @@
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load('daten.mat');
 data(:,:,1) = data1;
@@ -14,4 +14,5 @@ for i=1:dataCount(3)
     [EVal, EVec, m] = pca(D);
     % * data D must be transposed for plot
     plot2DPCA(D', m, D', EVec, EVal, 1, 1);
+    title(strcat('PCA of data', num2str(i)));
 end

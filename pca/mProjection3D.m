@@ -1,6 +1,6 @@
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load('daten3d.mat');
 [d, n] = size(data);
@@ -11,6 +11,7 @@ load('daten3d.mat');
 
 % plot data
 plot3DPCA(data', m', EVec, EVal, 1, 1);
+title('3D PCA - original data');
 
 
 %%%%%%%% RECONSTRUCTED DATA %%%%%%%%
@@ -25,6 +26,7 @@ end
 recData = EVec(:,1:2) * projection2D' + m * ones(1,n);
 
 plot3DPCA(recData', m', EVec, EVal, 1, 1);
+title('2D PCA - reconstructed data');
 
 %same as: mean(data - recData, n)
-uncertainty = sum(abs(data - recData)') / n
+uncertainty3D = sum(abs(data - recData)') / n
