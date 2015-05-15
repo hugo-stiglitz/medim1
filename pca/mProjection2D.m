@@ -4,6 +4,10 @@ clear all;
 
 load('daten.mat');
 data = data3;
+
+%%
+% Aufgabe 3a
+
 [d, n] = size(data);
 
 [EVal, EVec, m] = pca(data);
@@ -22,6 +26,9 @@ title('2D PCA - main vector');
 %same as: mean(data - recData, n)
 uncertainty2DMain = sum(abs(data - recData)') / n
 
+
+%%
+% Aufgabe 3b
 
 %%%%%%%% SIDE VECTOR %%%%%%%%
 

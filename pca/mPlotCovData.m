@@ -8,6 +8,9 @@ data(:,:,2) = data2;
 data(:,:,3) = data3;
 data(:,:,4) = data4;
 
+%%
+% Aufgabe 1b
+
 figure('Name', 'covariance of data', 'NumberTitle', 'off');
 
 dataCount = size(data);

@@ -3,6 +3,10 @@ clear all;
 %clc;
 
 load('daten3d.mat');
+
+%%
+% Aufgabe 4a
+
 [d, n] = size(data);
 
 [EVal, EVec, m] = pca(data);
@@ -13,6 +17,9 @@ load('daten3d.mat');
 plot3DPCA(data', m', EVec, EVal, 1, 1);
 title('3D PCA - original data');
 
+
+%%
+% Aufgabe 4b
 
 %%%%%%%% RECONSTRUCTED DATA %%%%%%%%
 

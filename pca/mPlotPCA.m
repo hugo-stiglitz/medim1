@@ -8,6 +8,9 @@ data(:,:,2) = data2;
 data(:,:,3) = data3;
 data(:,:,4) = data4;
 
+%%
+% Aufgabe 2a
+
 dataCount = size(data);
 for i=1:dataCount(3)
     D = data(:,:,i);

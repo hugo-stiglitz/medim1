@@ -1,6 +1,16 @@
+% Aufgabe 2
+
 function [ EVal, EVecSort, m ] = pca( D )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%pca calculates eigen-vectors and eigen-values of a data set
+%   D ... d x n matrix
+%   d ... dimension
+%   n ... datapoints
+%   calculates the variance-matrix of the input data D and returns a list
+%   of eigen-values (sorted descending) and eigen-vectors sorted according
+%   to the eigen-value
+%   EVal ... sorted eigen-values
+%   EVecSort ... sorted eigen-vectors
+%   m ... mean
 
 [d, n] = size(D);
 m = mean(D,2);
