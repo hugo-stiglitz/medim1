@@ -61,8 +61,8 @@ b = zeros(nEigenvalues, 1);
 figure;
 title('shape model - 80% / 90% / 95% / 100% variance');
 
-    p.Color = 'blue';
-    hold on;
+p.Color = 'blue';
+hold on;
 
 indices = []; % indices when 80%, 90%, 95% and 100% variance is met
 for i = 1:nEigenvalues
