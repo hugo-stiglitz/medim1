@@ -49,7 +49,7 @@ title('shape model - standard deviations');
 totalVariance = sum(abs(EVal));
 
 v = abs(EVal); % variances
-bAll = randn(1,nEigenvalues)' .* sqrt(v); % random parameter vector with all values set
+bAll = randn(1,nEigenvalues)' .* sqrt(v) % random parameter vector with all values set
 vNorm = v ./ totalVariance; % normalized variance vector
 
 varianceSum = 0;
@@ -99,7 +99,8 @@ for i = 1:nEigenvalues
     if (varianceSum >= 1 && lastVarianceSum < 1)
         strcat('100% bei:', num2str(i))
         s(:,:,4) = generateShape(EVec(:,1), b, meanShape);
-        plot(s(:,1,4), s(:,2,4));
+        p100 = plot(s(:,1,4), s(:,2,4));
+        p100.LineWidth = 5;
         indices(4) = i;
         break;
     end
