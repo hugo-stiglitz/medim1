@@ -12,7 +12,10 @@ figure;
 imshow(img);
 
 %compute features
-features = computeFeatures(img);
+features = cache(@computeFeatures, img);
+
+% without cache
+%features = computeFeatures(img);
 
 %%plot features
 
@@ -24,12 +27,19 @@ title('gray values');
 
 %gradient
 figure;
-[x,y] = meshgrid(1:width,1:height);
-xG = extractFeature(features, 4, imgSize)
+xG = extractFeature(features, 4, imgSize);
 yG = extractFeature(features, 5, imgSize);
-quiver(x,y,xG,yG);
+% vector plot:
+%[x,y] = meshgrid(1:width,1:height);
+%quiver(x,y,xG,yG);
+subplot(1,2,1);
+imagesc(xG);
 axis('equal');
-title('gradient');
+title('gradient - x');
+subplot(1,2,2);
+imagesc(yG);
+axis('equal');
+title('gradient - y');
 
 %haar-like gray-value
 figure;
