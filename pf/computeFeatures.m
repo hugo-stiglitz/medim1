@@ -27,9 +27,9 @@ for i = 1 : height
         %feature 5: y-gradient
         features(k, 5) = yG(i,j);
         %feature 6: haar like features - gray-value
-        features(k, 6:25) = haarLikeGray(k);   % TODO
+        features(k, 6:25) = haarLikeGray(1:20, k);
         %feature 7: haar like features - gradient
-        features(k, 26:35) = haarLikeGradient(k);
+        features(k, 26:45) = haarLikeGradient(1:20, k);
         
         k = k+1;
     end
