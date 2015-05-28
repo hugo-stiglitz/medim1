@@ -2,30 +2,20 @@ function [ rf ] = train( images, masks )
 %TRAIN Summary of this function goes here
 %   Detailed explanation goes here
 
-%numberOfTrees = 32;
-% numberOfTrees = 10;
-% 
-% for i = 1 : 1   %30
-%     features = cache(@computeFeatures, images{i});
-%     mask = masks{i};
-%     labels = mask(:);
-%     rf = TreeBagger(numberOfTrees, features, labels', 'OOBVarImp', 'on');
-%     
-%     if i == 1
-%         %Aufgabe 3b
-%         oobErrorRf1 = oobError(rf);
-%         plot(oobErrorRf1);
-%         xlabel('Number of grown trees');
-%         ylabel('Out-of-bag classification error');
-%     end
-% end
-
-
-    nTrainingImages = 1; %size(masks, 2);
+    nTrainingImages = size(images, 2);
     
     features = []; % all features
     labels = []; % all labels
     nFeatures = 0; % number of features
+    
+    % calculate number of final features
+    % and initialize size of features matrix to speed up feature assignment
+    nFeaturesFinal = 0;
+    for i = 1 : nTrainingImages
+        nFeaturesFinal = nFeaturesFinal + nnz(masks{i}); % nnz: Count non zero values
+    end
+    nFeaturesFinal = nFeaturesFinal * 2; % *2 beacuase the same amount of negative information is added
+    features = zeros(nFeaturesFinal,45); 
     
     % iterate images
     for i = 1 : nTrainingImages
@@ -70,17 +60,5 @@ function [ rf ] = train( images, masks )
     end
 
     rf = TreeBagger(32, features, labels', 'OOBVarImp', 'on');
-    
-    %Aufgabe 3b
-    oobErrorRf1 = oobError(rf);
-    plot(oobErrorRf1);
-    xlabel('Number of grown trees');
-    ylabel('Out-of-bag classification error');
-    
-    %Aufgabe 3c
-    figure();
-    plot(rf.OOBPermutedVarDeltaError, '*');
-    figure();
-    bar(rf.OOBPermutedVarDeltaError);
 end
 

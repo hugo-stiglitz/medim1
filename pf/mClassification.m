@@ -4,21 +4,15 @@ clc;
 
 load ('handdata.mat');
 
-%load fisheriris
+%Aufgabe 3a
+rf = train(images(1:30), masks(1:30));
 
-i1 = images{1,1};
-p1 = [aligned(:,1,1) , aligned(:,2,1)];
+%Aufgabe 3b
+oobErrorRf = oobError(rf);
+plot(oobErrorRf);
+xlabel('Number of grown trees');
+ylabel('Out-of-bag classification error');
 
-imagesc(i1);
-axis equal;
-hold on;
-%scatter(p1(:,1)+(143/2), p1(:,2)+(306/2));
-figure();imagesc(double(i1)+double(masks{1})*100);
-axis equal;
-%plot([0 100],[0 100]);
-
-hold off;
-%figure();imagesc(masks{1});
-%figure();imagesc(masks{2});
-%figure();imagesc(masks{3});
-%figure();imagesc(masks{4});
+%Aufgabe 3c
+figure();
+bar(rf.OOBPermutedVarDeltaError);
