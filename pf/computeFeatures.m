@@ -17,9 +17,9 @@ k = 1;
 for i = 1 : height
     for j = 1 : width
         %feature 1: x coordinate
-        features(k, 1) = i;
+        features(k, 1) = j;
         %feature 2: y coordinate
-        features(k, 2) = j;
+        features(k, 2) = i;
         %feature 3: gray-value
         features(k, 3) = image(i,j);
         %feature 4: x-gradient
