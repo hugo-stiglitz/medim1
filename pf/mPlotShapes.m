@@ -27,9 +27,9 @@ b(1) = 2 * sqrt(EVal(1));
 
 % create some random shapes
 s(:,:,1) = generateShape(EVec(:,1), b, meanShape, 1, 0, 0, 0);
-s(:,:,2) = generateShape(EVec(:,1), b, meanShape, 1, 0, 30, 10);
-s(:,:,3) = generateShape(EVec(:,1), b, meanShape, 1.4, 0, 10, 0);
-s(:,:,4) = generateShape(EVec(:,1), b, meanShape, 0.8, pi/2, 00, 0);
+s(:,:,2) = generateShape(EVec(:,1), b, meanShape, 1, 0, 10, 30);
+s(:,:,3) = generateShape(EVec(:,1), b, meanShape, 1.4, 0, 0, 10);
+s(:,:,4) = generateShape(EVec(:,1), b, meanShape, 0.8, pi/2, 0, 0);
 s(:,:,5) = generateShape(EVec(:,1), b, meanShape, 0.3, pi, 20, 20);
 
 plotShape(s, meanShape);
