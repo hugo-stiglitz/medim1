@@ -1,10 +1,10 @@
 function f = makeCostFunction(EVector, b, Mean, contour)
-    f = @costFunction;
-    
-    % x, y values of contour
-    [xContour,yContour] = find(contour > 0);
-    
-    function c = costFunction(params)               
+f = @costFunction;
+
+% x, y values of contour
+[xContour,yContour] = find(contour > 0);
+
+    function c = costFunction(params)
         % generate shape
         shape = generateShape(EVector, b, Mean, params(1), params(2), params(3), params(4));
         nShapePoints = size(shape, 1);

@@ -9,8 +9,10 @@ function [ features ] = computeFeatures( image )
 
 %haar like
 haarLikeGray = computeHaarLike(image);
-imageGradient = sqrt(xG.^2 + yG.^2);
-haarLikeGradient = computeHaarLike(imageGradient);
+imageGradientAbs = sqrt(xG.^2 + yG.^2);
+haarLikeGradientAbs = computeHaarLike(imageGradientAbs);
+haarLikeGradientX = computeHaarLike(xG);
+haarLikeGradientY = computeHaarLike(yG);
 
 features = zeros(height * width, 8);
 k = 1;
@@ -28,8 +30,30 @@ for i = 1 : height
         features(k, 5) = yG(i,j);
         %feature 6: haar like features - gray-value
         features(k, 6:25) = haarLikeGray(1:20, k);
-        %feature 7: haar like features - gradient
-        features(k, 26:45) = haarLikeGradient(1:20, k);
+        %feature 7: haar like features - gradientAbs
+        features(k, 26:45) = haarLikeGradientAbs(1:20, k);
+        %feature 8: haar like features - gradient x
+        features(k, 46:65) = haarLikeGradientX(1:20, k);
+        %feature 8: haar like features - gradient y
+        features(k, 66:85) = haarLikeGradientY(1:20, k);
+        
+        %playground
+        vl = 0; vr = 0; vt = 0; vb = 0; vlt = 0; vlb = 0; vrt = 0; vrb = 0;
+        if i > 1 && i < height && j > 1 && j < width
+            vl = image(i,j-1);
+            vr = image(i,j+1);
+            vt = image(i+1,j);
+            vb = image(i-1,j);
+            
+            vlt = image(i+1,j-1);
+            vlb = image(i-1,j-1);
+            vrt = image(i+1,j+1);
+            vrb = image(i-1,j+1);
+        end
+        
+        features(k, 86) = vt + vb + vl + vlt + vlb + image(i,j) + vr + vrt + vrb;
+        features(k, 87) = vl + image(i,j) + vr;
+        features(k, 88) = vt + image(i,j) + vb;
         
         k = k+1;
     end

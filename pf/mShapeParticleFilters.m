@@ -7,13 +7,9 @@ clc;
 load ('handdata.mat');
 
 %Aufgabe 4a
+rf = cache(@train, images(1:30), masks(1:30));
 
-% check if rf already exists, so it doesnt have to be computed every time
-if (exist('rf') == 0)
-    rf = train(images(1:30), masks(1:30));
-end
-
- % preict contour for image
+ % predict contour for image
 img = images{31};
 contour = predictContour(rf, img);
 imagesc(contour);

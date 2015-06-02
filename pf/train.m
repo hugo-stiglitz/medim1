@@ -2,6 +2,8 @@ function [ rf ] = train( images, masks )
 %TRAIN Summary of this function goes here
 %   Detailed explanation goes here
 
+    disp('train...');
+
     nTrainingImages = size(images, 2);
     
     features = []; % all features
@@ -15,10 +17,11 @@ function [ rf ] = train( images, masks )
         nFeaturesFinal = nFeaturesFinal + nnz(masks{i}); % nnz: Count non zero values
     end
     nFeaturesFinal = nFeaturesFinal * 2; % *2 beacuase the same amount of negative information is added
-    features = zeros(nFeaturesFinal,45); 
+    features = zeros(nFeaturesFinal,88);
+    labels = cell(nFeaturesFinal,1);
     
     % iterate images
-    for i = 1 : nTrainingImages
+    for i = 1 : nTrainingImages        
         mask = masks{i};
         
         % get feature for images
@@ -59,6 +62,9 @@ function [ rf ] = train( images, masks )
         end
     end
 
+    disp('create random forrest...');
+    tic
     rf = TreeBagger(32, features, labels', 'OOBVarImp', 'on');
+    disp(['elapsed time is ' num2str(toc) ' seconds']);
 end
 
