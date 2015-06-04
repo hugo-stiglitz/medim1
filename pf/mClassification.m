@@ -16,5 +16,4 @@ ylabel('Out-of-bag classification error');
 %Aufgabe 3c
 figure();
 b = bar(rf.OOBPermutedVarDeltaError);
-
 set(gca,'Xtick',1:5,'XTickLabel',{'x'; 'y'; 'V'; 'xG'; 'yG'});
