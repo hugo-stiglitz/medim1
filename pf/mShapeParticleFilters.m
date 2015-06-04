@@ -45,8 +45,9 @@ contour = masks{31}; % TODO: remove and use prediction istead
 
 costFunction = makeCostFunction(EVector, b, meanShape, contour);
 
-background = double(contour)*15 + double(img);
-drawPopulation = makeDrawPopulation(EVector, b, meanShape, background);
+background = img;
+contour = double(contour)*15;
+drawPopulation = makeDrawPopulation(EVector, b, meanShape, background, contour);
 
 figure;
 imagesc(background);

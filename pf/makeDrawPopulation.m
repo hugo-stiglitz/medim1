@@ -1,4 +1,4 @@
-function f = makeDrawPopulation( EVector, b, Mean, contour )
+function f = makeDrawPopulation( EVector, b, Mean, background, contour )
 %MAKEDRAWPOPULATION Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -8,7 +8,9 @@ function f = makeDrawPopulation( EVector, b, Mean, contour )
         % h(1) = plot(population(1,:),population(2,:),'wx'); hold on
         % h(2) = plot(population(1,:),population(2,:),'b+'); hold on      
         
-        imagesc(contour);
+        % TODO show contour
+        %imagesc(contour);
+        imshow(background);
         
         for i = 1 : size(population,2)
             % generate shape
