@@ -10,6 +10,7 @@ load ('handdata.mat');
 rf = cache(@train, images(1:30), masks(1:30));
 
  % predict contour for image
+ disp('predict contour...');
 img = images{31};
 contour = predictContour(rf, img);
 imagesc(contour);
@@ -17,6 +18,7 @@ imagesc(contour);
 % optimize
 
 % PCA
+disp('pca...');
 [nPoints nDimensions nShapes] = size(aligned);
 
 % calculate mean shape
@@ -38,6 +40,7 @@ b(1) = 2 * sqrt(EVal(1));
 EVector = EVec(:,1);
 
 
+disp('prepare optimize...');
 minimums = [ 0.5; 0; 0; 0 ];
 maximums = [ 2; 2*pi; size(img,1); size(img,2) ];
 
@@ -52,4 +55,5 @@ figure;
 imagesc(background);
 %tmp = generateShape(EVector,b,meanShape,1,0,150,70);
 %plot(tmp(:,1), tmp(:,2));
+disp('optimize...');
 optimize(costFunction,minimums,maximums,drawPopulation);
