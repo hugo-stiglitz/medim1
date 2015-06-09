@@ -12,7 +12,8 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
     end
 
     nLandmarks = size(shape,2);
-
+    [wImg, hImg] = size(img);
+    
     for l = 1:nLandmarks
 
         % calculate normals
@@ -28,7 +29,7 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
 
         n = n1+n2;
         n = n / sum(abs(n))*10;
-
+        
         piStart = [p0(1)+n(1) p0(2)+n(2)];
         piEnd = [p0(1)-n(1) p0(2)-n(2)];
 
@@ -40,8 +41,8 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
 
         % get profile points
         g = zeros(nP, 1);
-        for k = 1:nP
-            y(:,k) = piStart + (k-1)/(nP-1) * (piEnd - piStart);
+        for k = 1:nP+1
+            y(:,k) = piStart + (k-1)/(nP+1-1) * (piEnd - piStart);
 
             if (drawOutput == 1)
                 plot(y(1,k), y(2,k), 'r*');
@@ -49,12 +50,25 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
         end
 
         % get profile values
-        for k = 1:nP-1
-            g(k) = img(int32(y(2,k+1)), int32(y(1,k+1))) - img(int32(y(2,k)), int32(y(1,k)));
+        for k = 1:nP
+            iy1 = int32(y(2,k+1));
+            ix1 = int32(y(1,k+1));
+            
+            iy0 = int32(y(2,k));
+            ix0 = int32(y(1,k));
+            
+            if (ix1>0 && iy1>0 && ix0>0 && iy0>0 && ix1<=wImg && iy1<=hImg && ix0<=wImg && iy0<=hImg)
+                g(k) = img(ix1, iy1) - img(ix0, iy0);
+            else
+                g(k) = 0;
+            end
         end
 
         % normalize profile
-        g = g / sum(abs(g));
+        gSum = sum(abs(g));
+        if (gSum > 0)
+            g = g / gSum;
+        end
         
         % save to output matrix
         profiles(:, l) = g;

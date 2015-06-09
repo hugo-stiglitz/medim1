@@ -39,14 +39,44 @@ b(1) = 2 * sqrt(EVal(1));
 
 EVector = EVec(:,1);
 
+% train ASM
+    nLandmarks = size(landmarks{1},2);
+    nImgs = 30;
+
+    % get landmark profiles from training set
+    for i = 1:nImgs
+       img = images{i};
+       shape = landmarks{i};
+
+       p = getLandmarkProfiles(img, shape, 8, i==1);
+
+       profiles(:,:,i) = p;
+    end
+
+    % calc meanProfile
+    for l = 1:nLandmarks
+        p = zeros(size(profiles,1),1);
+        for i = 1:nImgs
+            p = p + profiles(:,l,i);
+        end
+        meanProfile(:,l) = p / nImgs;
+    end
+
+    % covariance of mean profile
+    Sg = ourCov(meanProfile);
+
 
 disp('prepare optimize...');
 minimums = [ 0.5; 0; 0; 0 ];
 maximums = [ 2; 2*pi; size(img,1); size(img,2) ];
 
+img = images{31};
 contour = masks{31}; % TODO: remove and use prediction istead
 
-costFunction = makeCostFunction(EVector, b, meanShape, contour);
+%Good guessdrawPopulation([1;-0.05;160;73],1)
+
+%costFunction = makeCostFunctionContourDistance(EVector, b, meanShape, contour);
+costFunction = makeCostFunctionLandmarkProfiles(EVector, b, meanShape, img, meanProfile, Sg);
 
 background = img;
 contour = double(contour)*15;

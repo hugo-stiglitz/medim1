@@ -1,4 +1,4 @@
-function f = makeCostFunction(EVector, b, Mean, contour)
+function f = makeCostFunctionContourDistance(EVector, b, Mean, contour)
 f = @costFunction;
 
 % x, y values of contour
