@@ -6,10 +6,8 @@ function f = makeCostFunctionLandmarkProfiles(EVector, b, Mean, img, profiles, S
     
     function c = costFunction(params)
         % generate shape
-        gShape = generateShape(EVector, b, Mean, params(1), params(2), params(3), params(4));
-        
-        shape(1,:) = gShape(:,2)';
-        shape(2,:) = gShape(:,1)';
+        shape = generateShape(EVector, b, Mean, params(1), params(2), params(3), params(4));
+        shape = shape';
         
         nLandmarks = size(shape, 1);
         

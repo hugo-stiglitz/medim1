@@ -95,17 +95,20 @@ minima = [min(minW/meanW, minH/meanH)*0.9; -0.05; minX; minY];
 maxima = [max(maxW/meanW, maxH/meanH)*1.1; 0.05; maxX; maxY];
 
 img = images{31};
+idealLandmarks = landmarks{31};
 contour = masks{31}; % TODO: remove and use prediction istead
 
-%Good guessdrawPopulation([1;-0.05;160;73],1)
+idealLandmarks = idealLandmarks';
+
+%Good guessdrawPopulation([1;-0.05;73;160],1)
 
 %costFunction = makeCostFunctionContourDistance(EVector, b, meanShape, contour);
 %costFunction = makeCostFunctionLandmarkProfiles(EVector, b, meanShape, img, meanProfile, Sg);
-costFunction = makeCostFunctionTest(EVector, b, meanShape);
+costFunction = makeCostFunctionTest(EVector, b, meanShape, idealLandmarks);
 
 background = img;
 contour = double(contour)*15;
-drawPopulation = makeDrawPopulation(EVector, b, meanShape, background, costFunction);
+drawPopulation = makeDrawPopulation(EVector, b, meanShape, background, costFunction, idealLandmarks);
 
 figure;
 imagesc(background);

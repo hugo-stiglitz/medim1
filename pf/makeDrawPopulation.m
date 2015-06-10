@@ -1,4 +1,4 @@
-function f = makeDrawPopulation( EVector, b, Mean, background, costFunction )
+function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, idealLandmarks )
 %MAKEDRAWPOPULATION Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -23,11 +23,16 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction )
             if (i == bestInd)
                 bestShape = shape;
             else 
-                h = plot(shape(:,1), shape(:,2));
-                h.Color = 'blue';
-                h.LineStyle = '--';
+                %h = plot(shape(:,1), shape(:,2));
+                %h.Color = 'blue';
+                %h.LineStyle = '--';
             end
         end
+        
+        % draw ideal shape
+        h = plot(idealLandmarks(:,1), idealLandmarks(:,2));
+        h.Color = 'r';
+        h.LineWidth = 1;
         
         % draw best shape at the end (so it isn't overdeawn)
         h = plot(bestShape(:,1), bestShape(:,2));
@@ -36,8 +41,8 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction )
         
         title(strcat('best cost: ',num2str(costFunction(population(:,bestInd)))));
         
-        figure(222);
-        getLandmarkProfiles(background, bestShape', 8, 1);
+        %figure(222);
+        %getLandmarkProfiles(background, bestShape', 8, 1);
     end
 end
 

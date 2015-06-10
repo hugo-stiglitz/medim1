@@ -1,11 +1,10 @@
-function f = makeCostFunctionTest(EVector, b, Mean)
+function f = makeCostFunctionTest(EVector, b, Mean, idealLandmarks)
     f = @costFunction;
 
     function c = costFunction(params)
-        good = [1;-0.05;73;160];
         
-        d = params-good;
-        c = sum(abs(d));
-        %disp(num2str(c));
+        shape = generateShape(EVector, b, Mean, params(1), params(2), params(3), params(4));
+        
+        c = sum(sum(abs(shape-idealLandmarks)));
     end
 end
