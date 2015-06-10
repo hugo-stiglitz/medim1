@@ -3,6 +3,8 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, ide
 %   Detailed explanation goes here
 
     f = @drawPopulation;
+    
+    callCounter = 0;
 
     function h = drawPopulation(population, bestInd)
         % h(1) = plot(population(1,:),population(2,:),'wx'); hold on
@@ -23,9 +25,9 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, ide
             if (i == bestInd)
                 bestShape = shape;
             else 
-                %h = plot(shape(:,1), shape(:,2));
-                %h.Color = 'blue';
-                %h.LineStyle = '--';
+                h = plot(shape(:,1), shape(:,2));
+                h.Color = 'blue';
+                h.LineStyle = '--';
             end
         end
         
@@ -39,7 +41,22 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, ide
         h.Color = 'green';
         h.LineWidth = 2;
         
-        title(strcat('best cost: ',num2str(costFunction(population(:,bestInd)))));
+        % information text
+        callCounter = callCounter + 1;
+        bestParams = population(:, bestInd);
+        description = {
+            strcat('best cost: ',num2str(costFunction(bestParams)));
+            'params: ';
+            strcat(' S: ',num2str(bestParams(1)));
+            strcat(' R: ',num2str(bestParams(2)));
+            strcat('  = ',num2str(bestParams(2)/pi*180),'°');
+            strcat(' X: ',num2str(bestParams(3)));
+            strcat(' Y: ',num2str(bestParams(4)))
+            ' ';
+            strcat('Calls: ',num2str(callCounter))};
+        
+        th = text(-50,50,description);
+        th.BackgroundColor = 'white';
         
         %figure(222);
         %getLandmarkProfiles(background, bestShape', 8, 1);
