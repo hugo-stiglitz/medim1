@@ -1,4 +1,4 @@
-function f = makeDrawPopulation( EVector, b, Mean, background, contour )
+function f = makeDrawPopulation( EVector, b, Mean, background, costFunction )
 %MAKEDRAWPOPULATION Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -10,6 +10,7 @@ function f = makeDrawPopulation( EVector, b, Mean, background, contour )
         
         % TODO show contour
         %imagesc(contour);
+        figure(111);
         imshow(background);
         
         for i = 1 : size(population,2)
@@ -32,6 +33,11 @@ function f = makeDrawPopulation( EVector, b, Mean, background, contour )
         h = plot(bestShape(:,1), bestShape(:,2));
         h.Color = 'green';
         h.LineWidth = 2;
+        
+        title(strcat('best cost: ',num2str(costFunction(population(:,bestInd)))));
+        
+        figure(222);
+        getLandmarkProfiles(background, bestShape', 8, 1);
     end
 end
 
