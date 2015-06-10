@@ -10,8 +10,8 @@ shape = EVector' * b + Mean;
 shape = shape .* scaling;
 shape = shape * [cos(rotation) -sin(rotation); sin(rotation) cos(rotation)];
 translation = zeros(size(shape));
-translation(:,1) = yTranslation;
-translation(:,2) = xTranslation;
+translation(:,1) = xTranslation;
+translation(:,2) = yTranslation;
 shape = shape + translation;
 
 
