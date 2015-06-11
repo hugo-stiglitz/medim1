@@ -3,7 +3,6 @@ function [ EVector, b, meanShape, minima, maxima, meanProfile, Sg ] = trainOptim
 %   Detailed explanation goes here
 
 % PCA
-disp('pca...');
 [nPoints nDimensions nShapes] = size(aligned);
 
 % calculate mean shape
@@ -72,12 +71,10 @@ end
 % covariance of mean profile
 Sg = ourCov(meanProfile);
 
-
-disp('prepare optimize...');
 %minima = [ 0.7; 0; 0; 0 ];
 %maxima = [ 1.3; 2*pi; size(img,1); size(img,2) ];
 minima = [min(minW/meanW, minH/meanH)*0.9; -pi/2; minX; minY];
-maxima = [max(maxW/meanW, maxH/meanH)*1.25; pi/2; maxX; maxY];
+maxima = [max(maxW/meanW, maxH/meanH)*1.2; pi/2; maxX; maxY];
 
 
 end
