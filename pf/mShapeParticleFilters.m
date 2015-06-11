@@ -11,7 +11,7 @@ rf = cache(@train, images(1:30), masks(1:30));
 
  % predict contour for image
  disp('predict contour...');
-img = images{31};
+img = images{34};
 contour = predictContour(rf, img);
 imagesc(contour);
 
@@ -96,7 +96,6 @@ maxima = [max(maxW/meanW, maxH/meanH)*1.1; 0.05; maxX; maxY];
 
 img = images{31};
 idealLandmarks = landmarks{31};
-contour = masks{31}; % TODO: remove and use prediction istead
 
 idealLandmarks = idealLandmarks';
 
@@ -104,15 +103,12 @@ idealLandmarks = idealLandmarks';
 
 %costFunction = makeCostFunctionContourDistance(EVector, b, meanShape, contour);
 %costFunction = makeCostFunctionLandmarkProfiles(EVector, b, meanShape, img, meanProfile, Sg);
-costFunction = makeCostFunctionTest(EVector, b, meanShape, idealLandmarks);
+%costFunction = makeCostFunctionTest(EVector, b, meanShape, idealLandmarks);
+costFunction = makeCostFunctionPrediction(EVector, b, meanShape, contour);
 
-background = img;
-contour = double(contour)*15;
-drawPopulation = makeDrawPopulation(EVector, b, meanShape, background, costFunction, idealLandmarks);
+%drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
 
-figure;
-imagesc(background);
-%tmp = generateShape(EVector,b,meanShape,1,0,150,70);
-%plot(tmp(:,1), tmp(:,2));
 disp('optimize...');
-optimize(costFunction,minima,maxima,drawPopulation);
+result = optimize(costFunction,minima,maxima);
+figure;
+drawPopulation(result,1);
