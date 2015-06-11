@@ -42,7 +42,7 @@ for i = 1:nImgs
    img2 = images{i};
    shape = landmarks{i}';
 
-   p = getLandmarkProfiles(img2, shape, 8, i==1);
+   p = getLandmarkProfiles(img2, shape, 8, 0);
 
    profiles(:,:,i) = p;
 
