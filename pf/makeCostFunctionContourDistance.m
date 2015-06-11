@@ -1,8 +1,9 @@
 function f = makeCostFunctionContourDistance(EVector, b, Mean, contour)
-f = @costFunction;
 
-% x, y values of contour
-[yContour, xContour] = find(contour > 0);
+    f = @costFunction;
+
+    % x, y values of contour
+    [yContour, xContour] = find(contour > 0);
 
     function c = costFunction(params)
         % generate shape

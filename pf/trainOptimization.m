@@ -77,7 +77,7 @@ disp('prepare optimize...');
 %minima = [ 0.7; 0; 0; 0 ];
 %maxima = [ 1.3; 2*pi; size(img,1); size(img,2) ];
 minima = [min(minW/meanW, minH/meanH)*0.9; -pi/2; minX; minY];
-maxima = [max(maxW/meanW, maxH/meanH)*1.1; pi/2; maxX; maxY];
+maxima = [max(maxW/meanW, maxH/meanH)*1.25; pi/2; maxX; maxY];
 
 
 end
