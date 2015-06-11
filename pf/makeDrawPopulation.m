@@ -53,7 +53,7 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, ide
             strcat(' X: ',num2str(bestParams(3)));
             strcat(' Y: ',num2str(bestParams(4)))
             ' ';
-            strcat('Calls: ',num2str(callCounter))};
+            strcat('Iteration: ',num2str(callCounter))};
         
         th = text(-50,50,description);
         th.BackgroundColor = 'white';
