@@ -24,18 +24,20 @@ for i = 1 : height
         features(k, 2) = i;
         %feature 3: gray-value
         features(k, 3) = image(i,j);
-        %feature 4: x-gradient
-        features(k, 4) = xG(i,j);
-        %feature 5: y-gradient
-        features(k, 5) = yG(i,j);
+        %feature 4: gradient value
+        features(k, 4) = imageGradientAbs(i,j);
+        %feature 5: x-gradient
+        features(k, 5) = xG(i,j);
+        %feature 6: y-gradient
+        features(k, 6) = yG(i,j);
         %feature 6: haar like features - gray-value
-        features(k, 6:25) = haarLikeGray(1:20, k);
+        features(k, 7:26) = haarLikeGray(1:20, k);
         %feature 7: haar like features - gradientAbs
-        features(k, 26:45) = haarLikeGradientAbs(1:20, k);
+        features(k, 27:46) = haarLikeGradientAbs(1:20, k);
         %feature 8: haar like features - gradient x
-        features(k, 46:65) = haarLikeGradientX(1:20, k);
+        features(k, 47:66) = haarLikeGradientX(1:20, k);
         %feature 8: haar like features - gradient y
-        features(k, 66:85) = haarLikeGradientY(1:20, k);        
+        features(k, 67:86) = haarLikeGradientY(1:20, k);        
         
         k = k+1;
     end

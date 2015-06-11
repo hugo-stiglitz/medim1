@@ -17,7 +17,7 @@ function [ rf ] = trainRf( images, masks )
         nFeaturesFinal = nFeaturesFinal + nnz(masks{i}); % nnz: Count non zero values
     end
     nFeaturesFinal = nFeaturesFinal * 2; % *2 beacuase the same amount of negative information is added
-    features = zeros(nFeaturesFinal,85);
+    features = zeros(nFeaturesFinal,86);
     labels = cell(nFeaturesFinal,1);
     
     % iterate images

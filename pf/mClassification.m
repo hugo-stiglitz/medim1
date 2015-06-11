@@ -5,7 +5,7 @@ clear all;
 load ('handdata.mat');
 
 %Aufgabe 3a
-rf = cache(@train, images(1:30), masks(1:30));
+rf = cache(@trainRf, images(1:30), masks(1:30));
 
 %Aufgabe 3b
 oobErrorRf = oobError(rf);
