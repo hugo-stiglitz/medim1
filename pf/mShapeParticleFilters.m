@@ -6,7 +6,7 @@ clc;
 
 load ('handdata.mat');
 
-testImageNumber = 31;
+testImageNumber = 48;
 
 %Aufgabe 4a
 rf = cache(@train, images(1:30), masks(1:30));
@@ -100,16 +100,14 @@ idealLandmarks = landmarks{testImageNumber};
 
 idealLandmarks = idealLandmarks';
 
-%Good guessdrawPopulation([1;-0.05;73;160],1)
-
 %costFunction = makeCostFunctionContourDistance(EVector, b, meanShape, contour);
 %costFunction = makeCostFunctionLandmarkProfiles(EVector, b, meanShape, img, meanProfile, Sg);
 %costFunction = makeCostFunctionTest(EVector, b, meanShape, idealLandmarks);
 costFunction = makeCostFunctionPrediction(EVector, b, meanShape, contour);
 
-drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
+%drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
+drawPopulation = makeDrawResult(EVector, b, meanShape, img, idealLandmarks);
 
 disp('optimize...');
 result = optimize(costFunction,minima,maxima);
-figure;
 drawPopulation(result,1);
