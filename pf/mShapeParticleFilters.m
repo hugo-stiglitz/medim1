@@ -6,12 +6,14 @@ clc;
 
 load ('handdata.mat');
 
+testImageNumber = 38;
+
 %Aufgabe 4a
 rf = cache(@train, images(1:30), masks(1:30));
 
- % predict contour for image
- disp('predict contour...');
-img = images{31};
+% predict contour for image
+disp('predict contour...');
+img = images{testImageNumber};
 contour = predictContour(rf, img);
 imagesc(contour);
 
@@ -54,10 +56,10 @@ EVector = EVec(:,1);
 
     % get landmark profiles from training set
     for i = 1:nImgs
-       img = images{i};
+       img2 = images{i};
        shape = landmarks{i}';
 
-       p = getLandmarkProfiles(img, shape, 8, i==1);
+       p = getLandmarkProfiles(img2, shape, 8, i==1);
 
        profiles(:,:,i) = p;
        
@@ -89,13 +91,12 @@ EVector = EVec(:,1);
 
 
 disp('prepare optimize...');
-%minima = [ 0.5; 0; 0; 0 ];
-%maxima = [ 2; 0.05; size(img,1); size(img,2) ];
-minima = [min(minW/meanW, minH/meanH)*0.9; -0.05; minX; minY];
-maxima = [max(maxW/meanW, maxH/meanH)*1.1; 0.05; maxX; maxY];
+%minima = [ 0.7; 0; 0; 0 ];
+%maxima = [ 1.3; 2*pi; size(img,1); size(img,2) ];
+minima = [min(minW/meanW, minH/meanH)*0.9; -pi/2; minX; minY];
+maxima = [max(maxW/meanW, maxH/meanH)*1.1; pi/2; maxX; maxY];
 
-img = images{31};
-idealLandmarks = landmarks{31};
+idealLandmarks = landmarks{testImageNumber};
 
 idealLandmarks = idealLandmarks';
 

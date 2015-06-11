@@ -8,17 +8,12 @@ img = images{1,1};
 imgSize = [height width];
 
 figure;
-%plot image
 imshow(img);
 
 %compute features
 features = cache(@computeFeatures, img);
 
-% without cache
-%features = computeFeatures(img);
-
-%%plot features
-
+%plot features
 %gray values
 figure;
 imagesc(extractFeature(features, 3, imgSize));
