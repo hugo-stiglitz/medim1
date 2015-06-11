@@ -56,4 +56,5 @@ function c = costFunction(params)
         c = 1e9 * max(shape(:,1)) - 1e9 * min(min(shape));
     end
 end
+
 end
