@@ -57,17 +57,17 @@ EVector = EVec(:,1);
     % get landmark profiles from training set
     for i = 1:nImgs
        img2 = images{i};
-       shape = landmarks{i};
+       shape = landmarks{i}';
 
        p = getLandmarkProfiles(img2, shape, 8, i==1);
 
        profiles(:,:,i) = p;
        
        % get min/max of landmarks
-       minX = min(minX, min(shape(1,:)));
-       maxX = max(maxX, max(shape(1,:)));
-       minY = min(minY, min(shape(2,:)));
-       maxY = max(maxY, max(shape(2,:)));
+       minX = min(minX, min(shape(:,1)));
+       maxX = max(maxX, max(shape(:,1)));
+       minY = min(minY, min(shape(:,2)));
+       maxY = max(maxY, max(shape(:,2)));
        minW = min(minW, maxX-minX);
        maxW = max(maxW, maxX-minX);
        minH = min(minH, maxY-minY);

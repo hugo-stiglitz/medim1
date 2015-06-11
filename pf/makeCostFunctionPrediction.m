@@ -51,10 +51,10 @@ function c = costFunction(params)
 
     if min(min(shape)) > 1 && max(shape(:,2)) < pHeight && max(shape(:,1)) < pWidth
         for k = 1 : nShapePoints
-            xShape = round(shape(k,2));
-            yShape = round(shape(k,1));
+            xShape = round(shape(k,1));
+            yShape = round(shape(k,2));
 
-            c = c + prediction(xShape, yShape);            
+            c = c + prediction(yShape, xShape);            
         end
     else
         c = 1e9 * max(shape(:,1)) - 1e9 * min(min(shape));

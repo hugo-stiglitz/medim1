@@ -4,10 +4,11 @@ function f = makeCostFunctionLandmarkProfiles(EVector, b, Mean, img, profiles, S
     % number of Profile Pixels
     nP = size(profiles,1);
     
+    invSg = inv(Sg);
+    
     function c = costFunction(params)
         % generate shape
         shape = generateShape(EVector, b, Mean, params(1), params(2), params(3), params(4));
-        shape = shape';
         
         nLandmarks = size(shape, 1);
         
@@ -17,7 +18,7 @@ function f = makeCostFunctionLandmarkProfiles(EVector, b, Mean, img, profiles, S
         for l = 1:nLandmarks
             
             profileDiff = (p(:,l) - profiles(:,l));
-            d = profileDiff' * inv(Sg) * profileDiff;
+            d = profileDiff' * invSg * profileDiff;
             
             c = c + abs(d);
         end

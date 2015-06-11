@@ -7,19 +7,19 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
         hold on;
         axis equal;
 
-        plot(shape(1,:),shape(2,:));
-        scatter(shape(1,:),shape(2,:));
+        plot(shape(:,1),shape(:,2));
+        scatter(shape(:,1),shape(:,2));
     end
 
-    nLandmarks = size(shape,2);
-    [wImg, hImg] = size(img);
+    nLandmarks = size(shape,1);
+    [hImg, wImg] = size(img);
     
     for l = 1:nLandmarks
 
         % calculate normals
-        p0 = shape(:,l);
-        p1 = shape(:,mod(l-2,nLandmarks)+1);
-        p2 = shape(:,mod(l,nLandmarks)+1);
+        p0 = shape(l,:);
+        p1 = shape(mod(l-2,nLandmarks)+1,:);
+        p2 = shape(mod(l,nLandmarks)+1,:);
 
         d1 = p1-p0;
         d2 = p0-p2;
@@ -58,7 +58,7 @@ function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
             ix0 = int32(y(1,k));
             
             if (ix1>0 && iy1>0 && ix0>0 && iy0>0 && ix1<=wImg && iy1<=hImg && ix0<=wImg && iy0<=hImg)
-                g(k) = img(ix1, iy1) - img(ix0, iy0);
+                g(k) = img(iy1, ix1) - img(iy0, ix0);
             else
                 g(k) = 0;
             end

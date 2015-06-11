@@ -48,9 +48,12 @@ function [ rf ] = train( images, masks )
         % add features not on contur
         i = nContourPixels;
         while i > 0
+            % find random feature
             k = int32(rand() * (nImgFeatures - 1)) + 1;
             x = imgFeatures(k, 1);
             y = imgFeatures(k, 2);
+            
+            %only if not on contour
             if (mask(y,x) == 0)
                 % not on contour
                 
