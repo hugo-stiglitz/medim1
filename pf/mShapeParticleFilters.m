@@ -1,8 +1,8 @@
 % Aufgabe 4
 
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load ('handdata.mat');
 
@@ -11,7 +11,7 @@ rf = cache(@trainRf, images(1:30), masks(1:30));
 [ EVector, b, meanShape, minima, maxima, meanProfile, Sg ] = trainOptimization( aligned, images(1:30), landmarks(1:30) );
 
 % Test Images
-for i = 31:50
+for i = 31:50   %change to 50
     img = images{i};
     idealLandmarks = landmarks{i};
     idealLandmarks = idealLandmarks';
