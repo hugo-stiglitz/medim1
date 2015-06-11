@@ -6,7 +6,7 @@ clc;
 
 load ('handdata.mat');
 
-testImageNumber = 38;
+testImageNumber = 31;
 
 %Aufgabe 4a
 rf = cache(@train, images(1:30), masks(1:30));
@@ -110,6 +110,6 @@ costFunction = makeCostFunctionPrediction(EVector, b, meanShape, contour);
 drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
 
 disp('optimize...');
-result = optimize(costFunction,minima,maxima, drawPopulation);
+result = optimize(costFunction,minima,maxima);
 figure;
 drawPopulation(result,1);
