@@ -1,4 +1,4 @@
-function [ prediction ] = predictContourPropability( rf, img )
+function [ prediction ] = predictContourProbability( rf, img )
 %PREDICT Summary of this function goes here
 %   Detailed explanation goes here
 
