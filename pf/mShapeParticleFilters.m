@@ -37,7 +37,7 @@ end
 
 % create parameter vector
 b = zeros(size(EVal,1), 1);
-b(1) = 2 * sqrt(EVal(1));
+b(1:15) = 2 * sqrt(EVal(1:15));
 
 EVector = EVec(:,1);
 
