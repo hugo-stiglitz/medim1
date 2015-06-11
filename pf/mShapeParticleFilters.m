@@ -1,8 +1,8 @@
 % Aufgabe 4
 
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load ('handdata.mat');
 

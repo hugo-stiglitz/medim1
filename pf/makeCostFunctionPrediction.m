@@ -40,8 +40,8 @@ for i = 4 : pHeight-3
 end
 
 prediction = 1./(tmpPrediction+1);
-figure;
-imagesc(prediction);
+%figure;
+%imagesc(prediction);
 
 function c = costFunction(params)
     % generate shape

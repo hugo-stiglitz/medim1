@@ -1,6 +1,6 @@
 clear all;
-close all;
-clc;
+%close all;
+%clc;
 
 load ('handdata.mat');
 img = images{1,1};
@@ -38,12 +38,13 @@ title('gradient - y');
 
 %haar-like gray-value
 figure;
+subplot(1,2,1);
 imagesc(extractFeature(features, 6, imgSize));
 axis('equal');
 title('haar-like gray');
 
 %haar-like gradient
-figure;
+subplot(1,2,2);
 imagesc(extractFeature(features, 26, imgSize));
 axis('equal');
 title('haar-like gradient');
