@@ -6,7 +6,7 @@ clc;
 
 load ('handdata.mat');
 
-testImageNumber = 38;
+testImageNumber = 31;
 
 %Aufgabe 4a
 rf = cache(@train, images(1:30), masks(1:30));

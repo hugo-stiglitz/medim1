@@ -1,26 +1,30 @@
 function f = makeCostFunctionPrediction(EVector, b, Mean, prediction)
 f = @costFunction;
 
-figure;
-imagesc(prediction);
-
 [pHeight, pWidth] = size(prediction);
 
 tmpPrediction(:,:) = prediction(:,:);
 for i = 4 : pHeight-3
     for j = 4 : pWidth-3
         if prediction(i,j) == 1
+            for m = -5 : 5
+                for n = -5 : 5
+                   if tmpPrediction(i+m,j+n) < 1
+                      tmpPrediction(i+m,j+n) = tmpPrediction(i+m,j+n) + 0.01; 
+                   end
+                end
+            end
             for m = -3 : 3
                 for n = -3 : 3
                    if tmpPrediction(i+m,j+n) < 1
-                      tmpPrediction(i+m,j+n) = tmpPrediction(i+m,j+n) + 0.01; 
+                      tmpPrediction(i+m,j+n) = tmpPrediction(i+m,j+n) + 0.02; 
                    end
                 end
             end
             for m = -2 : 2
                 for n = -2 : 2
                    if tmpPrediction(i+m,j+n) < 1
-                      tmpPrediction(i+m,j+n) = tmpPrediction(i+m,j+n) + 0.02; 
+                      tmpPrediction(i+m,j+n) = tmpPrediction(i+m,j+n) + 0.05; 
                    end
                 end
             end
