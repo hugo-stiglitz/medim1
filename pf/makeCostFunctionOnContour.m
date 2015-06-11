@@ -3,7 +3,7 @@ function [ f ] = makeCostFunctionOnContour( EVector, b, Mean, contour )
 %   Detailed explanation goes here
 
     f = @costFunction;
-    [wImg, hImg] = size(contour);
+    [hImg, wImg] = size(contour);
 
     function c = costFunction(params)
         % generate shape
@@ -20,7 +20,7 @@ function [ f ] = makeCostFunctionOnContour( EVector, b, Mean, contour )
             
             if (xShape > 0 && yShape > 0 && xShape <= wImg && yShape <= hImg)
                 
-                v = contour(xShape, yShape);
+                v = contour(yShape, xShape);
                 c = c + (1-v);
                 
             else

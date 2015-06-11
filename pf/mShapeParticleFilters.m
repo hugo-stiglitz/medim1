@@ -11,7 +11,7 @@ rf = cache(@train, images(1:30), masks(1:30));
 
  % predict contour for image
  disp('predict contour...');
-img = images{34};
+img = images{31};
 contour = predictContour(rf, img);
 imagesc(contour);
 
@@ -55,7 +55,7 @@ EVector = EVec(:,1);
     % get landmark profiles from training set
     for i = 1:nImgs
        img = images{i};
-       shape = landmarks{i};
+       shape = landmarks{i}';
 
        p = getLandmarkProfiles(img, shape, 8, i==1);
 
@@ -106,7 +106,7 @@ idealLandmarks = idealLandmarks';
 %costFunction = makeCostFunctionTest(EVector, b, meanShape, idealLandmarks);
 costFunction = makeCostFunctionPrediction(EVector, b, meanShape, contour);
 
-%drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
+drawPopulation = makeDrawPopulation(EVector, b, meanShape, img, costFunction, idealLandmarks);
 
 disp('optimize...');
 result = optimize(costFunction,minima,maxima);

@@ -7,11 +7,7 @@ function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, ide
     callCounter = 0;
 
     function h = drawPopulation(population, bestInd)
-        % h(1) = plot(population(1,:),population(2,:),'wx'); hold on
-        % h(2) = plot(population(1,:),population(2,:),'b+'); hold on      
-        
-        % TODO show contour
-        %imagesc(contour);
+
         figure(111);
         imshow(background);
         
