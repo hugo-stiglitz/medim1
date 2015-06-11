@@ -3,7 +3,9 @@ function f = makeDrawResult( EVector, b, Mean, background, idealLandmarks )
 
     function h = drawPopulation(population, tmp)
         
+        figure;
         imshow(background);
+        hold on;
         for i = 1 : size(population,2)
             % generate shape
             params = population(:, i);
@@ -18,7 +20,6 @@ function f = makeDrawResult( EVector, b, Mean, background, idealLandmarks )
         % draw shape
         h = plot(shape(:,1), shape(:,2));
         h.Color = 'green';
-        h.LineWidth = 2;
-        
+        h.LineWidth = 2;        
     end
 end

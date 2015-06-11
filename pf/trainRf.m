@@ -1,4 +1,4 @@
-function [ rf ] = train( images, masks )
+function [ rf ] = trainRf( images, masks )
 %TRAIN Summary of this function goes here
 %   Detailed explanation goes here
 
