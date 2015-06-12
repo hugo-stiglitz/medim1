@@ -19,7 +19,8 @@ for i = 31:50
     prediction = predictContour(rf, img);
     %predictionProbability = predictContourProbability(rf, img);
     
-    costFunction = makeCostFunctionPrediction(EVector, b, meanShape, prediction);
+    %costFunction = makeCostFunctionPrediction(EVector, b, meanShape, prediction);
+    costFunction = makeCostFunctionGrowPrediction(EVector, b, meanShape, prediction, 200);
     %costFunction = makeCostFunctionContourDistance(EVector, b, meanShape, prediction);
     %costFunction = makeCostFunctionOnContour(EVector, b, meanShape, predictionProbability);
     %costFunction = makeCostFunctionLandmarkProfiles(EVector, b, meanShape, img, meanProfile, Sg);
