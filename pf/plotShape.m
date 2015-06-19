@@ -5,19 +5,21 @@ function [ output_args ] = plotShape( shapes, meanShape )
 
 [nPoints nDimensions nShapes] = size(shapes);
 
-% Plot all shapes in blue
+% Plot all shapes in different colors
 figure;
 
+colors = {'blue', 'green', 'yellow', 'magenta', 'cyan'}';
 for i = 1:nShapes
     p = plot(shapes(:,1,i), shapes(:,2,i));
-    p.Color = 'blue';
+    p.Color = colors{mod(i,5)+1};
+    p.LineWidth = 1.7;
     hold on;
 end
 
 % Plot meanShape in red
 p = plot(meanShape(:,1),meanShape(:,2));
 p.Color = 'red';
-p.LineWidth = 2;
+p.LineWidth = 3;
 
 hold off;
 

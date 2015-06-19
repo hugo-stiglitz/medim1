@@ -23,8 +23,8 @@ for it = 0 : x : 1000
     end
 end
 
-figure;
-imagesc(prediction);
+%figure;
+%imagesc(prediction);
 
     function c = costFunction(params)
         % generate shape
