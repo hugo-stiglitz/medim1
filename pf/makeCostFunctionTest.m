@@ -1,4 +1,7 @@
 function f = makeCostFunctionTest(EVector, b, Mean, idealLandmarks)
+%makeCostFunctionTest Makes a cost function that compares the differences
+% to the ideal landmarks
+
     f = @costFunction;
 
     function c = costFunction(params)

@@ -1,4 +1,7 @@
 function f = makeCostFunctionLandmarkProfiles(EVector, b, Mean, img, profiles, Sg)
+%makeCostFunctionLandmarkProfiles Makes a cost function that uses the
+% landmark profiles for cost function
+
     f = @costFunction;
 
     % number of Profile Pixels
@@ -20,6 +23,7 @@ function f = makeCostFunctionLandmarkProfiles(EVector, b, Mean, img, profiles, S
             profileDiff = (p(:,l) - profiles(:,l));
             d = profileDiff' * invSg * profileDiff;
             
+            % sum up error as cost
             c = c + abs(d);
         end
     end

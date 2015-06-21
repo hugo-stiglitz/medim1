@@ -1,6 +1,6 @@
 function [ EVector, b, meanShape, minima, maxima, meanProfile, Sg ] = trainOptimization( aligned, images, landmarks )
-%TRAINOPTIMIZATION Summary of this function goes here
-%   Detailed explanation goes here
+%TRAINOPTIMIZATION Trains the Shape PCA and Landmark Profiles and the
+%   Optimization bounds
 
 % PCA
 [nPoints nDimensions nShapes] = size(aligned);
@@ -71,8 +71,7 @@ end
 % covariance of mean profile
 Sg = ourCov(meanProfile);
 
-%minima = [ 0.7; 0; 0; 0 ];
-%maxima = [ 1.3; 2*pi; size(img,1); size(img,2) ];
+% optimization bounds 
 minima = [min(minW/meanW, minH/meanH)*0.9; -pi/2; minX; minY];
 maxima = [max(maxW/meanW, maxH/meanH)*1.2; pi/2; maxX; maxY];
 

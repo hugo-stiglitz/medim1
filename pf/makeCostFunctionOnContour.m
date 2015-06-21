@@ -1,6 +1,6 @@
 function [ f ] = makeCostFunctionOnContour( EVector, b, Mean, contour )
-%MAKECOSTFUNCTIONONCONTOUR Summary of this function goes here
-%   Detailed explanation goes here
+%makeCostFunctionOnContour Makes a cost function that uses the predicted
+% contour propabilities.
 
     f = @costFunction;
     [hImg, wImg] = size(contour);
@@ -21,6 +21,8 @@ function [ f ] = makeCostFunctionOnContour( EVector, b, Mean, contour )
             if (xShape > 0 && yShape > 0 && xShape <= wImg && yShape <= hImg)
                 
                 v = contour(yShape, xShape);
+                
+                % sum up propability of background
                 c = c + (1-v);
                 
             else

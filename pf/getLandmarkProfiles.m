@@ -1,6 +1,6 @@
 function [ profiles ] = getLandmarkProfiles( img, shape, nP, drawOutput )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%getLandmarkProfiles Galculate the landmark profiles of a shape
+% np: Number of profile points
 
     if (drawOutput == 1)
         imagesc(img);

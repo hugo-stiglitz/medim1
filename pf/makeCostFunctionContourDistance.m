@@ -1,4 +1,6 @@
 function f = makeCostFunctionContourDistance(EVector, b, Mean, contour)
+%makeCostFunctionContourDistance Makes a cost function that measures
+% the distance to the nearest prediction point.
 
     f = @costFunction;
 

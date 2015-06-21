@@ -1,6 +1,6 @@
 function f = makeDrawPopulation( EVector, b, Mean, background, costFunction, idealLandmarks )
-%MAKEDRAWPOPULATION Summary of this function goes here
-%   Detailed explanation goes here
+%MAKEDRAWPOPULATION Makes a function, that draws a shape population for
+% an optimization method
 
     f = @drawPopulation;
     

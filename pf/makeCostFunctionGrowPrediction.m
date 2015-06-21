@@ -1,4 +1,8 @@
 function f = makeCostFunctionGrowPrediction(EVector, b, Mean, prediction, n)
+%makeCostFunctionGrowPrediction Makes a cost function that uses the predicted
+% contour and a neighborhood as cost function
+
+
 f = @costFunction;
 
 [pHeight, pWidth] = size(prediction);
